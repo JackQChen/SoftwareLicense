@@ -1,5 +1,7 @@
 ### 项目信息
 
+![](https://github.com/chen365409389/SoftwareLicense/blob/master/Img/REG.png)
+
 #### 用于进行软件授权
 
 验证流程如下:<br><br>
