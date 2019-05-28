@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Management;
 using System.Text;
@@ -99,7 +98,7 @@ namespace Register
         /// <summary>
         /// 验证是否为当前机器
         /// </summary>
-        /// <param name="RegString"></param>
+        /// <param name="machineCode"></param>
         /// <returns></returns>
         private bool IsCurrentMachine(string machineCode)
         {
@@ -107,7 +106,7 @@ namespace Register
         }
 
         /// <summary>
-        /// 效期是否有效
+        /// 是否在有效期内
         /// </summary>
         private bool IsValidity(string validity)
         {

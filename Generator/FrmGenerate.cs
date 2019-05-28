@@ -44,10 +44,10 @@ namespace Generator
             {
                 RegInfo regInfo = new RegInfo();
                 RegBaseInfo baseInfo = new RegBaseInfo();
-                baseInfo.MachineCode = this.txtMachineCode.Text;
-                baseInfo.OrganizationCode = this.txtOrgCode.Text;
-                baseInfo.OrganizationName = this.txtOrganization.Text;
-                baseInfo.ExpiryDate = this.dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                baseInfo.MachineCode = txtMachineCode.Text;
+                baseInfo.OrganizationCode = txtOrgCode.Text;
+                baseInfo.OrganizationName = txtOrganization.Text;
+                baseInfo.ExpiryDate = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 regInfo.RegBase = baseInfo;
                 regInfo.Signature = rsa.SignatureFormatter(privateKey, rsa.GetHash(convert.Serialize(baseInfo)));
                 File.WriteAllText(saveFileDialog1.FileName,
