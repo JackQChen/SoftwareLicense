@@ -13,16 +13,19 @@ namespace Register
 
         private RSACryption rsa = new RSACryption();
         private JavaScriptSerializer convert = new JavaScriptSerializer();
-        private string machineCode;
 
+        //此处公钥需要通过rsa.RSAKey()来进行生成，与Generator项目中私钥是一对
         private readonly string publicKey = @"
-此处公钥需要通过rsa.RSAKey()来进行生成，与Generator项目中私钥是一对
+<RSAKeyValue>
+<Modulus>5vUf2tCILfv1T6oQK6kY36UGefK9yuueZkf6ZboLakIhY9shbTS7o653Z0k7iFrdP5kOcRxSm6XLSZ0+H8fzAeBrxLmwqwd1Jwb2V5TBj6ee3mqK3ZIQ1Ikv6akovynkitILvI2arftHJySU3Dul+U87DYaEeCFJ49SOdnBfmUU=</Modulus>
+<Exponent>AQAB</Exponent>
+</RSAKeyValue>
 ";
 
         public Validate()
         {
             var strID = string.Format("{0},{1},{2}", GetCpuID(), GetBoardID(), GetDiskID());
-            machineCode = MD5Crytion.Encrypt(strID).ToUpper();
+            MachineCode = MD5Crytion.Encrypt(strID).ToUpper();
         }
 
         #region 获取机器相关信息
@@ -87,13 +90,7 @@ namespace Register
             }
         }
 
-        internal string MachineCode
-        {
-            get
-            {
-                return this.machineCode;
-            }
-        }
+        internal string MachineCode { get; }
 
         #endregion
 
