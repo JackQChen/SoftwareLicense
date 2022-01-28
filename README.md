@@ -1,10 +1,17 @@
-### 项目信息
+﻿### 项目信息
 
 ![](https://github.com/chen365409389/SoftwareLicense/blob/master/Img/REG.png)
 
 #### 用于进行软件授权
 
 示例中使用了一组RSA密钥，实际项目中需要使用RSAKey生成新的密钥来使用<br>
+
+使用方式<br><br>
+1.取消注释Generator项目中FrmGenerate.cs第37、38行内容，在39行添加断点，运行Generator项目<br>
+2.调用rsa.RSAKey方法后将生成一组密钥，私钥及对应的公钥，进行记录<br>
+3.私钥替换到Generator项目中FrmGenerate.cs的privateKey内容<br>
+4.公钥替换到Register项目中Validate.cs的publicKey内容<br>
+5.可以使用Generator和Register对自己的项目(Client测试)添加授权验证了<br><br>
 
 验证流程如下:<br><br>
 1.客户端从本地key.lic文件中读取授权信息<br>

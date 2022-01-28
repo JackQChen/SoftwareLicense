@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Management;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace Register
         public Validate()
         {
             var strID = string.Format("{0},{1},{2}", GetCpuID(), GetBoardID(), GetDiskID());
-            MachineCode = MD5Crytion.Encrypt(strID).ToUpper();
+            MachineCode = BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(strID))).Replace("-", "");
         }
 
         #region 获取机器相关信息
@@ -89,7 +90,7 @@ namespace Register
             }
         }
 
-        internal string MachineCode { get; }
+        internal string MachineCode { get; private set; }
 
         #endregion
 
@@ -127,7 +128,13 @@ namespace Register
                 var infoString = Encoding.Default.GetString(Convert.FromBase64String(regString));
                 reg = convert.Deserialize<RegInfo>(infoString);
                 regInfo = reg;
-                if (rsa.SignatureDeformatter(publicKey, rsa.GetHash(convert.Serialize(reg.RegBase)), reg.Signature))
+                if (reg == null)
+                {
+                    if (showMsg)
+                        MessageBox.Show("无效的授权文件信息！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if (rsa.SignatureDeformatter(publicKey, rsa.GetHash(convert.Serialize(reg.RegBase)), reg.Signature))
                 {
                     if (!IsCurrentMachine(reg.RegBase.MachineCode))
                     {
