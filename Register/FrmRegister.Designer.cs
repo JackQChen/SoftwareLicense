@@ -120,6 +120,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "软件注册";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmActive_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

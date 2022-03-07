@@ -34,6 +34,8 @@ namespace Generator
 
         private void FrmGenerate_Load(object sender, EventArgs e)
         {
+            //string privateKey, publicKey;
+            //rsa.RSAKey(out privateKey, out publicKey);
             dateTimePicker1.Value = DateTime.Now;
             saveFileDialog1.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
         }
